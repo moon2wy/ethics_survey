@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>협력사 윤리·준법경영 실천 설문조사</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D2B55;
+    --navy-mid: #1A3F7A;
+    --navy-light: #2B5699;
+    --accent: #C8A96A;
+    --accent-light: #F0E2C0;
+    --bg: #F5F6F8;
+    --card: #FFFFFF;
+    --text: #1A1A2E;
+    --text-secondary: #5A6070;
+    --border: #DDE2EE;
+    --success-bg: #EAF4EE;
+    --success: #2A7A4B;
+    --detail-bg: #FFF8EC;
+    --detail-border: #E8C97A;
+    --section-pill: #E8EDF7;
+    --section-pill-text: #1A3F7A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+
+  /* Header */
+  .survey-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .survey-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border: 1px solid rgba(200,169,106,0.2);
+    border-radius: 50%;
+  }
+  .survey-header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 300px; height: 300px;
+    border: 1px solid rgba(200,169,106,0.15);
+    border-radius: 50%;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(200,169,106,0.2);
+    border: 1px solid rgba(200,169,106,0.4);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .survey-header h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+  }
+  @media (max-width: 560px) {
+    .survey-header h1 { font-size: 16px; }
+  }
+  @media (max-width: 420px) {
+    .survey-header h1 { font-size: 14px; }
+  }
+  .survey-header .subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Progress */
+  .progress-wrap {
+    background: var(--navy);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .progress-bar-bg {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    min-width: 60px;
+    text-align: right;
+  }
+
+  /* Container */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
+
+  /* Intro card */
+  .intro-card {
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .intro-card p {
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .intro-card p:last-child { margin-bottom: 0; }
+  .intro-highlight {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: #7A5E20;
+    font-weight: 500;
+  }
+  .intro-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .meta-tag {
+    background: var(--section-pill);
+    color: var(--section-pill-text);
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  /* Consent */
+  .consent-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .consent-box input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--navy-light);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .consent-box label {
+    font-size: 13.5px;
+    color: var(--text);
+    cursor: pointer;
+    line-height: 1.7;
+  }
+
+  /* Section header */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0 14px;
+  }
+  .section-pill {
+    background: var(--navy);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Question card */
+  .q-card {
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 22px 24px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .q-card:focus-within {
+    border-color: var(--navy-light);
+    box-shadow: 0 0 0 3px rgba(43,86,153,0.08);
+  }
+  .q-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .q-num {
+    background: var(--navy);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .q-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .q-optional {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-left: 6px;
+  }
+
+  /* Radio / Checkbox options */
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 34px;
+  }
+  .opt-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .opt-item:hover {
+    border-color: var(--navy-light);
+    background: #F0F4FC;
+  }
+  .opt-item input[type="radio"],
+  .opt-item input[type="checkbox"] {
+    accent-color: var(--navy-light);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .opt-item label {
+    font-size: 13.5px;
+    color: var(--text);
+    cursor: pointer;
+    flex: 1;
+  }
+  .opt-item.selected {
+    border-color: var(--navy-light);
+    background: #EEF3FC;
+  }
+  .opt-item.selected label { color: var(--navy); font-weight: 500; }
+
+  /* Text inputs */
+  .text-input, .textarea-input {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text);
+    background: #FAFBFD;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    margin-left: 34px;
+    width: calc(100% - 34px);
+  }
+  .textarea-input { resize: vertical; min-height: 90px; line-height: 1.7; }
+  .text-input:focus, .textarea-input:focus {
+    border-color: var(--navy-light);
+    box-shadow: 0 0 0 3px rgba(43,86,153,0.08);
+    background: #fff;
+  }
+
+  /* Detail box (conditional) */
+  .detail-box {
+    display: none;
+    margin-top: 12px;
+    margin-left: 34px;
+    background: var(--detail-bg);
+    border: 1px solid var(--detail-border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .detail-box.show { display: block; }
+  .detail-box p {
+    font-size: 12.5px;
+    color: #8A6A20;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .detail-box textarea {
+    width: 100%;
+    border: 1px solid rgba(200,150,50,0.3);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text);
+    background: rgba(255,255,255,0.8);
+    resize: vertical;
+    min-height: 80px;
+    outline: none;
+    line-height: 1.7;
+  }
+  .detail-box textarea:focus {
+    border-color: var(--detail-border);
+    box-shadow: 0 0 0 2px rgba(200,150,50,0.15);
+  }
+
+  /* Submit area */
+  .submit-area {
+    margin-top: 32px;
+    text-align: center;
+  }
+  .submit-btn {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 15px 48px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Noto Sans KR', sans-serif;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: -0.3px;
+  }
+  .submit-btn:hover { background: var(--navy-mid); }
+  .submit-btn:active { transform: scale(0.98); }
+  .submit-btn:disabled { background: #BDC3CF; cursor: not-allowed; }
+  .submit-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 12px;
+    line-height: 1.7;
+  }
+
+  /* Success screen */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .success-icon {
+    width: 72px; height: 72px;
+    background: var(--success-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .success-icon svg { color: var(--success); }
+  .success-screen h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .success-screen p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+  .download-btn {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 12px 28px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Noto Sans KR', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .download-btn:hover { background: var(--navy-mid); }
+
+  /* Validation */
+  .q-card.invalid { border-color: #E24B4A; }
+  .err-msg {
+    display: none;
+    color: #A32D2D;
+    font-size: 12px;
+    margin-top: 8px;
+    margin-left: 34px;
+  }
+  .q-card.invalid .err-msg { display: block; }
+
+  /* Footer */
+  .footer-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 32px;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 480px) {
+    .q-card { padding: 18px 16px; }
+    .options-list { padding-left: 0; }
+    .text-input, .textarea-input { margin-left: 0; width: 100%; }
+    .detail-box { margin-left: 0; }
+    .err-msg { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="survey-header">
+  <div class="header-badge">2026 · ESG 경영 실천</div>
+  <h1>협력사 윤리·준법경영 실천을 위한 설문조사</h1>
+  <div class="subtitle">한국전기안전써비스(주)</div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progressFill"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">0 / 8</div>
+</div>
+
+<div class="container" id="formContainer">
+
+  <!-- Intro -->
+  <div class="intro-card">
+    <p>안녕하십니까,</p>
+    <p>한국전기안전써비스(주)와 함께해 주시는 귀사의 노고와 협력에 깊은 감사의 말씀을 드립니다.</p>
+    <p>우리 회사는 기업의 사회적 책임을 다하고 지속가능한 성장을 위해 ESG 경영을 적극적으로 실천하고 있습니다. 이와 관련하여, 당사와 협력사 간의 투명하고 공정한 거래 질서를 확립하고 상생 협력하는 환경을 조성하고자 윤리·준법경영 설문조사를 실시하게 되었습니다.</p>
+    <div class="intro-highlight">⚠️ 응답해 주신 모든 내용은 철저히 비밀이 보장되며, 설문 결과로 인한 어떠한 불이익도 없음을 약속드립니다.</div>
+    <p>바쁘시더라도 잠시 시간을 내어 솔직한 의견을 남겨주시면 감사하겠습니다.</p>
+    <div class="intro-meta">
+      <span class="meta-tag">📅 마감: 2026년 5월 00일(O) 까지</span>
+      <span class="meta-tag">📧 문의: ESG팀 강동훈 팀장 / kdh@kess.kr · 문준혁 프로 / moon2wy@kess.kr</span>
+    </div>
+  </div>
+
+  <!-- Consent -->
+  <div class="consent-box">
+    <input type="checkbox" id="consent" onchange="updateProgress()">
+    <label for="consent">위 안내 사항을 모두 읽었으며, 설문에 성실하게 참여할 것에 동의합니다. 본 설문의 응답 내용은 윤리·준법경영 개선 목적으로만 사용됨을 이해합니다.</label>
+  </div>
+
+  <!-- ====== 제1장 ====== -->
+  <div class="section-header">
+    <span class="section-pill">제1장</span>
+    <span class="section-title">기본 정보</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="q-card" id="q2card">
+    <div class="q-label">
+      <span class="q-num">1</span>
+      <span class="q-text">당사와의 거래 기간은 어느 정도입니까?</span>
+    </div>
+    <div class="options-list">
+      <div class="opt-item" onclick="selectRadio('q2','1년 미만')">
+        <input type="radio" name="q2" value="1년 미만" onchange="updateProgress()">
+        <label>1년 미만</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q2','1~3년')">
+        <input type="radio" name="q2" value="1~3년" onchange="updateProgress()">
+        <label>1~3년</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q2','3년 이상')">
+        <input type="radio" name="q2" value="3년 이상" onchange="updateProgress()">
+        <label>3년 이상</label>
+      </div>
+    </div>
+    <span class="err-msg">이 항목은 필수입니다.</span>
+  </div>
+
+  <!-- ====== 제2장 ====== -->
+  <div class="section-header">
+    <span class="section-pill">제2장</span>
+    <span class="section-title">청탁도 및 부패 방지</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="q-card" id="q3card">
+    <div class="q-label">
+      <span class="q-num">1</span>
+      <span class="q-text">원활한 업무 처리나 계약 유지를 목적으로 당사 임직원으로부터 금전, 선물, 향응(식사, 유흥 등), 편의 제공을 요구받거나 요구한 경험이 있습니까?</span>
+    </div>
+    <div class="options-list">
+      <div class="opt-item" onclick="selectRadio('q3','없다'); hideDetail('q3detail')">
+        <input type="radio" name="q3" value="없다" onchange="updateProgress()">
+        <label>없다</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q3','있다'); showDetail('q3detail')">
+        <input type="radio" name="q3" value="있다" onchange="updateProgress()">
+        <label>있다</label>
+      </div>
+    </div>
+    <div class="detail-box" id="q3detail">
+      <p>📝 발생 시기, 구체적인 요구 내용 등을 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
+      <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
+    </div>
+    <span class="err-msg">이 항목은 필수입니다.</span>
+  </div>
+
+  <div class="q-card" id="q5card">
+    <div class="q-label">
+      <span class="q-num">2</span>
+      <span class="q-text">당사 임직원이 직위를 이용하여 개인적인 심부름이나 사적인 요구를 한 경험이 있습니까?</span>
+    </div>
+    <div class="options-list">
+      <div class="opt-item" onclick="selectRadio('q5','없다'); hideDetail('q5detail')">
+        <input type="radio" name="q5" value="없다" onchange="updateProgress()">
+        <label>없다</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q5','있다'); showDetail('q5detail')">
+        <input type="radio" name="q5" value="있다" onchange="updateProgress()">
+        <label>있다</label>
+      </div>
+    </div>
+    <div class="detail-box" id="q5detail">
+      <p>📝 어떤 형태의 사적인 요구였는지 구체적인 상황을 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
+      <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
+    </div>
+    <span class="err-msg">이 항목은 필수입니다.</span>
+  </div>
+
+  <!-- ====== 제3장 ====== -->
+  <div class="section-header">
+    <span class="section-pill">제3장</span>
+    <span class="section-title">공정 거래 및 갑질 근절</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="q-card" id="q6card">
+    <div class="q-label">
+      <span class="q-num">1</span>
+      <span class="q-text">당사와의 계약 체결 시, 부당한 단가 인하 요구나 귀사에 불리한 계약 조건을 강요받은 경험이 있습니까?</span>
+    </div>
+    <div class="options-list">
+      <div class="opt-item" onclick="selectRadio('q6','없다'); hideDetail('q6detail')">
+        <input type="radio" name="q6" value="없다" onchange="updateProgress()">
+        <label>없다</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q6','있다'); showDetail('q6detail')">
+        <input type="radio" name="q6" value="있다" onchange="updateProgress()">
+        <label>있다</label>
+      </div>
+    </div>
+    <div class="detail-box" id="q6detail">
+      <p>📝 어떤 조건에서 불이익이나 강요가 있었는지 구체적으로 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
+      <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
+    </div>
+    <span class="err-msg">이 항목은 필수입니다.</span>
+  </div>
+
+  <div class="q-card" id="q7card">
+    <div class="q-label">
+      <span class="q-num">2</span>
+      <span class="q-text">대금 지급이 정해진 기일 내에 원활하게 이루어지고 있습니까?</span>
+    </div>
+    <div class="options-list">
+      <div class="opt-item" onclick="selectRadio('q7','그렇다'); hideDetail('q7detail')">
+        <input type="radio" name="q7" value="그렇다" onchange="updateProgress()">
+        <label>그렇다</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q7','아니다'); showDetail('q7detail')">
+        <input type="radio" name="q7" value="아니다" onchange="updateProgress()">
+        <label>아니다</label>
+      </div>
+    </div>
+    <div class="detail-box" id="q7detail">
+      <p>📝 대금 지급이 지연된 건수나 당시 상황을 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
+      <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
+    </div>
+    <span class="err-msg">이 항목은 필수입니다.</span>
+  </div>
+
+  <div class="q-card" id="q8card">
+    <div class="q-label">
+      <span class="q-num">3</span>
+      <span class="q-text">업무 수행 중 당사 임직원으로부터 폭언, 무시, 강압적 태도 등 이른바 '갑질'을 경험한 적이 있습니까?</span>
+    </div>
+    <div class="options-list">
+      <div class="opt-item" onclick="selectRadio('q8','없다'); hideDetail('q8detail')">
+        <input type="radio" name="q8" value="없다" onchange="updateProgress()">
+        <label>없다</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q8','있다'); showDetail('q8detail')">
+        <input type="radio" name="q8" value="있다" onchange="updateProgress()">
+        <label>있다</label>
+      </div>
+    </div>
+    <div class="detail-box" id="q8detail">
+      <p>📝 발생 시기 및 구체적인 피해 경황을 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
+      <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
+    </div>
+    <span class="err-msg">이 항목은 필수입니다.</span>
+  </div>
+
+  <!-- ====== 제4장 ====== -->
+  <div class="section-header">
+    <span class="section-pill">제4장</span>
+    <span class="section-title">윤리/ESG 경영 준수</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="q-card" id="q9card">
+    <div class="q-label">
+      <span class="q-num">1</span>
+      <span class="q-text">귀사는 자체적인 윤리 규정이나 행동 강령을 보유하고 실천하고 계십니까?</span>
+    </div>
+    <div class="options-list">
+      <div class="opt-item" onclick="selectRadio('q9','예')">
+        <input type="radio" name="q9" value="예" onchange="updateProgress()">
+        <label>예</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q9','아니오')">
+        <input type="radio" name="q9" value="아니오" onchange="updateProgress()">
+        <label>아니오</label>
+      </div>
+    </div>
+    <span class="err-msg">이 항목은 필수입니다.</span>
+  </div>
+
+  <div class="q-card" id="q10card">
+    <div class="q-label">
+      <span class="q-num">2</span>
+      <span class="q-text">당사와 업무를 수행하는 과정에서 안전/보건상의 위험 요소나 환경 문제가 발생할 우려를 느낀 적이 있습니까?</span>
+    </div>
+    <div class="options-list">
+      <div class="opt-item" onclick="selectRadio('q10','없다'); hideDetail('q10detail')">
+        <input type="radio" name="q10" value="없다" onchange="updateProgress()">
+        <label>없다</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q10','있다'); showDetail('q10detail')">
+        <input type="radio" name="q10" value="있다" onchange="updateProgress()">
+        <label>있다</label>
+      </div>
+    </div>
+    <div class="detail-box" id="q10detail">
+      <p>📝 어떤 공정이나 업무 과정에서 위험·환경 문제를 느끼셨는지 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
+      <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
+    </div>
+    <span class="err-msg">이 항목은 필수입니다.</span>
+  </div>
+
+  <!-- ====== 제5장 ====== -->
+  <div class="section-header">
+    <span class="section-pill">제5장</span>
+    <span class="section-title">기타 건의 사항</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="q-card" id="q11card">
+    <div class="q-label">
+      <span class="q-num">1</span>
+      <span class="q-text">한국전기안전써비스(주)의 윤리경영 실천 및 상생 협력을 위해 제안하고 싶으신 의견이나, 거래 과정에서의 애로사항이 있다면 자유롭게 기재해 주십시오. <span class="q-optional">(선택 사항)</span></span>
+    </div>
+    <textarea class="textarea-input" style="min-height:120px" placeholder="자유롭게 의견을 작성해 주십시오" oninput="updateProgress()"></textarea>
+  </div>
+
+  <!-- ====== 제6장 ====== -->
+  <div class="section-header">
+    <span class="section-pill">제6장</span>
+    <span class="section-title">제보자 정보 <span style="font-weight:400;font-size:13px;color:#8A93A8;">(선택 사항)</span></span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="intro-card" style="margin-bottom:12px; padding: 16px 22px;">
+    <p style="font-size:13px;">본 설문은 철저히 익명으로 진행됩니다. 다만, 제보 내용에 대한 보다 명확한 사실관계 확인이 필요한 경우 아래 정보를 남겨주시면 감사하겠습니다. 기재해 주신 정보는 관련 담당자 외에는 절대 열람할 수 없으며, 신뢰 및 제보 내용은 완벽하게 비밀이 보장됩니다.</p>
+  </div>
+
+  <div class="q-card" id="q12card">
+    <div class="q-label">
+      <span class="q-num">1</span>
+      <span class="q-text">소속 업체명 <span class="q-optional">(선택 사항)</span></span>
+    </div>
+    <input type="text" class="text-input" id="q12" placeholder="소속 업체명을 입력해 주십시오" oninput="updateProgress()">
+  </div>
+
+  <div class="q-card" id="q13card">
+    <div class="q-label">
+      <span class="q-num">2</span>
+      <span class="q-text">성명 및 직급 <span class="q-optional">(선택 사항)</span></span>
+    </div>
+    <input type="text" class="text-input" id="q13" placeholder="성명 및 직급을 입력해 주십시오" oninput="updateProgress()">
+  </div>
+
+  <div class="q-card" id="q14card">
+    <div class="q-label">
+      <span class="q-num">3</span>
+      <span class="q-text">연락처 (휴대전화 또는 이메일) <span class="q-optional">(선택 사항)</span></span>
+    </div>
+    <input type="text" class="text-input" id="q14" placeholder="연락처를 입력해 주십시오" oninput="updateProgress()">
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-area">
+    <button class="submit-btn" id="submitBtn" onclick="submitSurvey()">설문 제출하기</button>
+    <p class="submit-note">제출 전에 모든 필수 항목을 확인해 주십시오.<br>제출된 내용은 수정이 어려울 수 있습니다.</p>
+  </div>
+
+  <div class="footer-note">
+    한국전기안전써비스(주) · ESG팀<br>
+    문의: 강동훈 팀장 kdh@kess.kr · 문준혁 프로 moon2wy@kess.kr
+  </div>
+
+  <!-- Success screen -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">
+      <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <h2>설문이 성공적으로 제출되었습니다</h2>
+    <p>소중한 의견을 보내주셔서 감사합니다.<br>귀사의 협력과 응답은 한국전기안전써비스(주)의<br>윤리경영 개선에 큰 도움이 됩니다.</p>
+    <button class="download-btn" onclick="downloadJSON()">📥 응답 내용 다운로드 (JSON)</button>
+  </div>
+
+</div>
+
+<script>
+const requiredQs = ['q2','q3','q5','q6','q7','q8','q9','q10'];
+
+function selectRadio(name, value) {
+  const radios = document.querySelectorAll(`input[name="${name}"]`);
+  radios.forEach(r => {
+    const item = r.closest('.opt-item');
+    item.classList.toggle('selected', r.value === value);
+    if (r.value === value) r.checked = true;
+  });
+  document.getElementById(name + 'card').classList.remove('invalid');
+  updateProgress();
+}
+
+function showDetail(id) {
+  document.getElementById(id).classList.add('show');
+}
+function hideDetail(id) {
+  document.getElementById(id).classList.remove('show');
+}
+
+function updateProgress() {
+  let answered = 0;
+  requiredQs.forEach(q => {
+    const checked = document.querySelector(`input[name="${q}"]:checked`);
+    if (checked) answered++;
+  });
+  const pct = Math.round((answered / requiredQs.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = answered + ' / ' + requiredQs.length;
+}
+
+function collectAnswers() {
+  const data = { timestamp: new Date().toISOString(), answers: {} };
+  requiredQs.forEach(q => {
+    const checked = document.querySelector(`input[name="${q}"]:checked`);
+    data.answers[q] = checked ? checked.value : null;
+  });
+  const details = ['q3','q5','q6','q7','q8','q10'];
+  details.forEach(q => {
+    const box = document.getElementById(q + 'detail');
+    if (box && box.classList.contains('show')) {
+      data.answers[q + '_detail'] = box.querySelector('textarea').value;
+    }
+  });
+  data.answers['q11'] = document.querySelector('#q11card textarea')?.value || '';
+  data.answers['q12'] = document.getElementById('q12').value;
+  data.answers['q13'] = document.getElementById('q13').value;
+  data.answers['q14'] = document.getElementById('q14').value;
+  return data;
+}
+
+function submitSurvey() {
+  let valid = true;
+
+  if (!document.getElementById('consent').checked) {
+    alert('설문 참여 동의를 체크해 주십시오.');
+    return;
+  }
+
+  requiredQs.forEach(q => {
+    const checked = document.querySelector(`input[name="${q}"]:checked`);
+    const card = document.getElementById(q + 'card');
+    if (!checked) { card.classList.add('invalid'); valid = false; }
+    else { card.classList.remove('invalid'); }
+  });
+
+  if (!valid) {
+    const firstInvalid = document.querySelector('.q-card.invalid');
+    if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const data = collectAnswers();
+  window._surveyData = data;
+
+  const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwly_xuARNYw9vRUb5-gHbKhsBvKjz0VdfPA-CEp_Sl9lyfLE0FESevJn52UGzVCEBs/exec';
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = '제출 중...';
+
+  const form = new FormData();
+  form.append('payload', JSON.stringify(data));
+
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: form
+  })
+  .then(() => {
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  })
+  .catch(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = '설문 제출하기';
+    alert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+  });
+}
+
+function downloadJSON() {
+  const data = window._surveyData || collectAnswers();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '윤리준법경영_설문응답_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+updateProgress();
+</script>
+</body>
+</html>
