@@ -81,6 +81,13 @@
     margin-bottom: 8px;
     position: relative;
     z-index: 1;
+    white-space: nowrap;
+  }
+  @media (max-width: 560px) {
+    .survey-header h1 { font-size: 16px; }
+  }
+  @media (max-width: 420px) {
+    .survey-header h1 { font-size: 14px; }
   }
   .survey-header .subtitle {
     font-size: 13px;
@@ -460,7 +467,6 @@
   }
 
   @media (max-width: 480px) {
-    .survey-header h1 { font-size: 18px; }
     .q-card { padding: 18px 16px; }
     .options-list { padding-left: 0; }
     .text-input, .textarea-input { margin-left: 0; width: 100%; }
@@ -473,15 +479,15 @@
 
 <div class="survey-header">
   <div class="header-badge">2026 · ESG 경영 실천</div>
-  <h1>협력사 윤리·준법경영 실천을 위한<br>설문조사</h1>
-  <div class="subtitle">한국전기안전써비스(주) · 준법경영 설문</div>
+  <h1>협력사 윤리·준법경영 실천을 위한 설문조사</h1>
+  <div class="subtitle">한국전기안전써비스(주)</div>
 </div>
 
 <div class="progress-wrap">
   <div class="progress-bar-bg">
     <div class="progress-bar-fill" id="progressFill"></div>
   </div>
-  <div class="progress-label" id="progressLabel">0 / 9</div>
+  <div class="progress-label" id="progressLabel">0 / 8</div>
 </div>
 
 <div class="container" id="formContainer">
@@ -544,7 +550,7 @@
   <div class="q-card" id="q3card">
     <div class="q-label">
       <span class="q-num">1</span>
-      <span class="q-text">당사 임직원으로부터 금전, 선물, 향응(식사, 유흥 등), 편의 제공을 요구받은 경험이 있습니까?</span>
+      <span class="q-text">원활한 업무 처리나 계약 유지를 목적으로 당사 임직원으로부터 금전, 선물, 향응(식사, 유흥 등), 편의 제공을 요구받거나 요구한 경험이 있습니까?</span>
     </div>
     <div class="options-list">
       <div class="opt-item" onclick="selectRadio('q3','없다'); hideDetail('q3detail')">
@@ -557,29 +563,7 @@
       </div>
     </div>
     <div class="detail-box" id="q3detail">
-      <p>📝 발생 시기, 구체적인 요구 내용 등을 기재해 주십시오. (제보자의 신뢰 및 내용은 철저히 보장됩니다.)</p>
-      <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
-    </div>
-    <span class="err-msg">이 항목은 필수입니다.</span>
-  </div>
-
-  <div class="q-card" id="q4card">
-    <div class="q-label">
-      <span class="q-num">2</span>
-      <span class="q-text">원활한 업무 처리나 계약 유지를 목적으로 당사 임직원에게 금품이나 향응을 제공한 적이 있습니까?</span>
-    </div>
-    <div class="options-list">
-      <div class="opt-item" onclick="selectRadio('q4','없다'); hideDetail('q4detail')">
-        <input type="radio" name="q4" value="없다" onchange="updateProgress()">
-        <label>없다</label>
-      </div>
-      <div class="opt-item" onclick="selectRadio('q4','있다'); showDetail('q4detail')">
-        <input type="radio" name="q4" value="있다" onchange="updateProgress()">
-        <label>있다</label>
-      </div>
-    </div>
-    <div class="detail-box" id="q4detail">
-      <p>📝 제공 시기, 목적, 대상(부서 등)을 기재해 주십시오.</p>
+      <p>📝 발생 시기, 구체적인 요구 내용 등을 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
       <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
     </div>
     <span class="err-msg">이 항목은 필수입니다.</span>
@@ -587,7 +571,7 @@
 
   <div class="q-card" id="q5card">
     <div class="q-label">
-      <span class="q-num">3</span>
+      <span class="q-num">2</span>
       <span class="q-text">당사 임직원이 직위를 이용하여 개인적인 심부름이나 사적인 요구를 한 경험이 있습니까?</span>
     </div>
     <div class="options-list">
@@ -601,7 +585,7 @@
       </div>
     </div>
     <div class="detail-box" id="q5detail">
-      <p>📝 어떤 형태의 사적인 요구였는지 구체적인 상황을 기재해 주십시오.</p>
+      <p>📝 어떤 형태의 사적인 요구였는지 구체적인 상황을 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
       <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
     </div>
     <span class="err-msg">이 항목은 필수입니다.</span>
@@ -630,7 +614,7 @@
       </div>
     </div>
     <div class="detail-box" id="q6detail">
-      <p>📝 어떤 조건에서 불이익이나 강요가 있었는지 구체적으로 기재해 주십시오.</p>
+      <p>📝 어떤 조건에서 불이익이나 강요가 있었는지 구체적으로 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
       <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
     </div>
     <span class="err-msg">이 항목은 필수입니다.</span>
@@ -652,7 +636,7 @@
       </div>
     </div>
     <div class="detail-box" id="q7detail">
-      <p>📝 대금 지급이 지연된 건수나 당시 상황을 기재해 주십시오.</p>
+      <p>📝 대금 지급이 지연된 건수나 당시 상황을 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
       <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
     </div>
     <span class="err-msg">이 항목은 필수입니다.</span>
@@ -674,7 +658,7 @@
       </div>
     </div>
     <div class="detail-box" id="q8detail">
-      <p>📝 발생 시기 및 구체적인 피해 경황을 기재해 주십시오.</p>
+      <p>📝 발생 시기 및 구체적인 피해 경황을 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
       <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
     </div>
     <span class="err-msg">이 항목은 필수입니다.</span>
@@ -721,7 +705,7 @@
       </div>
     </div>
     <div class="detail-box" id="q10detail">
-      <p>📝 어떤 공정이나 업무 과정에서 위험·환경 문제를 느끼셨는지 기재해 주십시오.</p>
+      <p>📝 어떤 공정이나 업무 과정에서 위험·환경 문제를 느끼셨는지 기재해 주십시오. (제보자의 신원 및 내용은 철저히 보장됩니다.)</p>
       <textarea placeholder="상세 내용을 입력해 주십시오" oninput="updateProgress()"></textarea>
     </div>
     <span class="err-msg">이 항목은 필수입니다.</span>
@@ -803,7 +787,7 @@
 </div>
 
 <script>
-const requiredQs = ['q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+const requiredQs = ['q2','q3','q5','q6','q7','q8','q9','q10'];
 
 function selectRadio(name, value) {
   const radios = document.querySelectorAll(`input[name="${name}"]`);
@@ -840,7 +824,7 @@ function collectAnswers() {
     const checked = document.querySelector(`input[name="${q}"]:checked`);
     data.answers[q] = checked ? checked.value : null;
   });
-  const details = ['q3','q4','q5','q6','q7','q8','q10'];
+  const details = ['q3','q5','q6','q7','q8','q10'];
   details.forEach(q => {
     const box = document.getElementById(q + 'detail');
     if (box && box.classList.contains('show')) {
