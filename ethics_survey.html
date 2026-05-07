@@ -490,7 +490,7 @@
   <div class="progress-bar-bg">
     <div class="progress-bar-fill" id="progressFill"></div>
   </div>
-  <div class="progress-label" id="progressLabel">0 / 8</div>
+  <div class="progress-label" id="progressLabel">0 / 9</div>
 </div>
 
 <div class="container" id="formContainer">
@@ -521,9 +521,34 @@
     <div class="section-line"></div>
   </div>
 
-  <div class="q-card" id="q2card">
+  <div class="q-card" id="q1card">
     <div class="q-label">
       <span class="q-num">1</span>
+      <span class="q-text">귀사와 당사의 주요 거래 형태는 무엇입니까?</span>
+    </div>
+    <div class="options-list">
+      <div class="opt-item" onclick="selectRadio('q1','당사가 귀사에 물품/용역을 제공함 (매출처/고객사)'); hideQ1Other()">
+        <input type="radio" name="q1" value="당사가 귀사에 물품/용역을 제공함 (매출처/고객사)" onchange="updateProgress()">
+        <label>당사가 귀사에 물품/용역을 제공함 (매출처/고객사)</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q1','귀사가 당사에 물품/용역을 제공함 (매입처/협력사)'); hideQ1Other()">
+        <input type="radio" name="q1" value="귀사가 당사에 물품/용역을 제공함 (매입처/협력사)" onchange="updateProgress()">
+        <label>귀사가 당사에 물품/용역을 제공함 (매입처/협력사)</label>
+      </div>
+      <div class="opt-item" onclick="selectRadio('q1','양방향 거래 또는 기타'); showQ1Other()">
+        <input type="radio" name="q1" value="양방향 거래 또는 기타" onchange="updateProgress()">
+        <label>양방향 거래 또는 기타</label>
+      </div>
+    </div>
+    <div id="q1other" style="display:none; margin-top:10px;">
+      <input type="text" class="text-input" id="q1otherText" placeholder="구체적인 거래 형태를 입력해 주십시오 (선택 사항)" oninput="updateProgress()">
+    </div>
+    <span class="err-msg">이 항목은 필수입니다.</span>
+  </div>
+
+  <div class="q-card" id="q2card">
+    <div class="q-label">
+      <span class="q-num">2</span>
       <span class="q-text">당사와의 거래 기간은 어느 정도입니까?</span>
     </div>
     <div class="options-list">
@@ -546,7 +571,7 @@
   <!-- ====== 제2장 ====== -->
   <div class="section-header">
     <span class="section-pill">제2장</span>
-    <span class="section-title">청탁도 및 부패 방지</span>
+    <span class="section-title">청렴도 및 부패 방지</span>
     <div class="section-line"></div>
   </div>
 
@@ -604,7 +629,7 @@
   <div class="q-card" id="q6card">
     <div class="q-label">
       <span class="q-num">1</span>
-      <span class="q-text">당사와의 계약 체결 시, 부당한 단가 인하 요구나 귀사에 불리한 계약 조건을 강요받은 경험이 있습니까?</span>
+      <span class="q-text">당사와의 계약 체결 시, 부당한 단가 조정(인하 또는 인상) 요구나 불리한 계약 조건을 강요받은 경험이 있습니까?</span>
     </div>
     <div class="options-list">
       <div class="opt-item" onclick="selectRadio('q6','없다'); hideDetail('q6detail')">
@@ -626,7 +651,7 @@
   <div class="q-card" id="q7card">
     <div class="q-label">
       <span class="q-num">2</span>
-      <span class="q-text">대금 지급이 정해진 기일 내에 원활하게 이루어지고 있습니까?</span>
+      <span class="q-text">대금 결제 및 물품/용역의 제공 등 양사 간의 계약 이행이 정해진 기일 내에 원활하게 이루어지고 있습니까?</span>
     </div>
     <div class="options-list">
       <div class="opt-item" onclick="selectRadio('q7','그렇다'); hideDetail('q7detail')">
@@ -790,7 +815,14 @@
 </div>
 
 <script>
-const requiredQs = ['q2','q3','q5','q6','q7','q8','q9','q10'];
+const requiredQs = ['q1','q2','q3','q5','q6','q7','q8','q9','q10'];
+
+function showQ1Other() {
+  document.getElementById('q1other').style.display = 'block';
+}
+function hideQ1Other() {
+  document.getElementById('q1other').style.display = 'none';
+}
 
 function selectRadio(name, value) {
   const radios = document.querySelectorAll(`input[name="${name}"]`);
@@ -827,6 +859,9 @@ function collectAnswers() {
     const checked = document.querySelector(`input[name="${q}"]:checked`);
     data.answers[q] = checked ? checked.value : null;
   });
+  if (document.querySelector('input[name="q1"]:checked')?.value === '양방향 거래 또는 기타') {
+    data.answers['q1_other'] = document.getElementById('q1otherText').value;
+  }
   const details = ['q3','q5','q6','q7','q8','q10'];
   details.forEach(q => {
     const box = document.getElementById(q + 'detail');
