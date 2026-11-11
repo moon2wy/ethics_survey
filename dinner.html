@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>저녁식사 참석 조사 | 2026 VVIP 전기안전 기술세미나</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #3369B3;
+    --green: #3D8E38;
+    --ink: #1f2937;
+    --sub: #6b7280;
+    --line: #e5e7eb;
+    --bg: #f4f6f9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  .stripe { height: 6px; background: linear-gradient(90deg, var(--blue) 0 50%, var(--green) 50% 100%); }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 24px 18px 40px; }
+
+  header { text-align: center; padding: 8px 0 22px; }
+  .event { font-size: 13px; font-weight: 500; color: var(--blue); letter-spacing: -0.2px; }
+  h1 { font-size: 26px; font-weight: 900; margin-top: 6px; letter-spacing: -0.8px; }
+  .lead { font-size: 14px; color: var(--sub); margin-top: 8px; line-height: 1.6; }
+
+  .info {
+    background: #fff; border-radius: 14px; padding: 6px 18px;
+    border: 1px solid var(--line); margin-bottom: 16px;
+  }
+  .info-row { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .info-row:last-child { border-bottom: none; }
+  .info-row dt { flex: 0 0 52px; color: var(--sub); font-size: 13px; padding-top: 2px; }
+  .info-row dd { flex: 1; font-weight: 500; line-height: 1.5; }
+  .info-row dd small { display: block; font-size: 13px; font-weight: 400; color: var(--sub); }
+
+  form { background: #fff; border-radius: 14px; padding: 20px 18px; border: 1px solid var(--line); }
+  .field { margin-bottom: 18px; }
+  label.t { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  label.t .req { color: #dc2626; margin-left: 2px; }
+  input[type=text] {
+    width: 100%; font: inherit; font-size: 16px; padding: 13px 14px;
+    border: 1.5px solid var(--line); border-radius: 10px; outline: none; background: #fff;
+  }
+  input[type=text]:focus { border-color: var(--blue); }
+
+  .choice { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .choice input { position: absolute; opacity: 0; pointer-events: none; }
+  .choice label {
+    display: flex; align-items: center; justify-content: center;
+    height: 56px; border: 1.5px solid var(--line); border-radius: 10px;
+    font-size: 17px; font-weight: 700; color: var(--sub); cursor: pointer;
+    transition: all .15s;
+  }
+  .choice input:checked + label.yes { border-color: var(--green); background: var(--green); color: #fff; }
+  .choice input:checked + label.no  { border-color: #6b7280; background: #6b7280; color: #fff; }
+
+  .err { display: none; font-size: 13px; color: #dc2626; margin-top: 6px; }
+  .field.invalid .err { display: block; }
+  .field.invalid input[type=text], .field.invalid .choice label { border-color: #dc2626; }
+
+  button {
+    width: 100%; height: 56px; border: none; border-radius: 12px;
+    background: var(--blue); color: #fff; font: inherit; font-size: 17px; font-weight: 700;
+    cursor: pointer; margin-top: 4px;
+  }
+  button:disabled { opacity: .6; cursor: default; }
+
+  .done { display: none; background: #fff; border-radius: 14px; padding: 36px 20px; text-align: center; border: 1px solid var(--line); }
+  .done .icon {
+    width: 64px; height: 64px; border-radius: 50%; background: var(--green); color: #fff;
+    font-size: 34px; line-height: 64px; margin: 0 auto 16px;
+  }
+  .done h2 { font-size: 21px; font-weight: 900; }
+  .done p { font-size: 15px; color: var(--sub); margin-top: 10px; line-height: 1.6; }
+  .done .summary { margin-top: 16px; font-size: 15px; font-weight: 500; color: var(--ink); background: var(--bg); border-radius: 10px; padding: 12px; }
+  .link { background: none; color: var(--blue); height: auto; font-size: 14px; font-weight: 500; margin-top: 18px; text-decoration: underline; }
+
+  footer { text-align: center; font-size: 12px; color: #9ca3af; margin-top: 24px; }
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<div class="wrap">
+  <header>
+    <div class="event">2026 VVIP 전기안전 기술세미나</div>
+    <h1>저녁식사 참석 조사</h1>
+    <p class="lead">세미나 후 저녁식사를 준비했습니다.<br>참석 여부를 알려주세요.</p>
+  </header>
+
+  <dl class="info">
+    <div class="info-row"><dt>장소</dt><dd>육리단길 용전점<small>세미나장에서 도보 약 5분</small></dd></div>
+    <div class="info-row"><dt>메뉴</dt><dd>삼겹살·목살 등 돼지고기</dd></div>
+  </dl>
+
+  <form id="f" novalidate>
+    <div class="field" id="fCompany">
+      <label class="t" for="company">회사명<span class="req">*</span></label>
+      <input type="text" id="company" autocomplete="organization" placeholder="예: 한국전기안전써비스">
+      <div class="err">회사명을 입력해 주세요.</div>
+    </div>
+    <div class="field" id="fName">
+      <label class="t" for="name">이름<span class="req">*</span></label>
+      <input type="text" id="name" autocomplete="name" placeholder="예: 홍길동">
+      <div class="err">이름을 입력해 주세요.</div>
+    </div>
+    <div class="field" id="fAttend">
+      <span class="t" style="display:block;font-size:14px;font-weight:700;margin-bottom:8px">참석 여부<span class="req" style="color:#dc2626;margin-left:2px">*</span></span>
+      <div class="choice">
+        <div><input type="radio" name="attend" id="a1" value="참석"><label class="yes" for="a1">참석</label></div>
+        <div><input type="radio" name="attend" id="a2" value="불참"><label class="no" for="a2">불참</label></div>
+      </div>
+      <div class="err">참석 여부를 선택해 주세요.</div>
+    </div>
+    <button type="submit" id="btn">제출하기</button>
+  </form>
+
+  <div class="done" id="done">
+    <div class="icon">✓</div>
+    <h2>응답이 접수되었습니다</h2>
+    <p>감사합니다.</p>
+    <div class="summary" id="summary"></div>
+    <button type="button" class="link" id="again">응답 수정하기</button>
+  </div>
+
+  <footer>한국전기안전써비스㈜</footer>
+</div>
+
+<script>
+  // Apps Script 웹 앱 배포 URL
+  const WEBHOOK_URL = 'PASTE_APPS_SCRIPT_URL_HERE';
+
+  const $ = id => document.getElementById(id);
+  const KEY = 'kess_dinner_2026';
+
+  function showDone(d) {
+    $('summary').textContent = d.company + ' · ' + d.name + ' · ' + d.attend;
+    $('f').style.display = 'none';
+    $('done').style.display = 'block';
+  }
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (saved) {
+      $('company').value = saved.company; $('name').value = saved.name;
+      document.querySelector('input[name=attend][value="' + saved.attend + '"]').checked = true;
+      showDone(saved);
+    }
+  } catch (e) {}
+
+  $('again').onclick = () => { $('done').style.display = 'none'; $('f').style.display = 'block'; };
+
+  document.querySelectorAll('input').forEach(el =>
+    el.addEventListener('input', () => el.closest('.field').classList.remove('invalid')));
+
+  $('f').addEventListener('submit', e => {
+    e.preventDefault();
+    const d = {
+      company: $('company').value.trim(),
+      name: $('name').value.trim(),
+      attend: (document.querySelector('input[name=attend]:checked') || {}).value || ''
+    };
+    let ok = true;
+    [['fCompany', d.company], ['fName', d.name], ['fAttend', d.attend]].forEach(([id, v]) => {
+      $(id).classList.toggle('invalid', !v); if (!v) ok = false;
+    });
+    if (!ok) return;
+
+    const btn = $('btn');
+    btn.disabled = true; btn.textContent = '제출 중...';
+    const body = new FormData();
+    body.append('company', d.company);
+    body.append('name', d.name);
+    body.append('attend', d.attend);
+
+    fetch(WEBHOOK_URL, { method: 'POST', mode: 'no-cors', body })
+      .then(() => {
+        try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {}
+        showDone(d);
+      })
+      .catch(() => alert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'))
+      .finally(() => { btn.disabled = false; btn.textContent = '제출하기'; });
+  });
+</script>
+</body>
+</html>
